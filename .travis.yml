@@ -1,0 +1,11 @@
+language: php
+php:
+- '7.1'
+before_script:
+- composer self-update
+- composer install --prefer-source
+- pear install --alldeps pear/PHP_CodeSniffer
+- phpenv rehash
+script:
+- phpunit -c ./tests/phpunit.xml
+- phpcs --ignore=*/vendor/ --extensions=php -p --standard=PSR2 ./src
